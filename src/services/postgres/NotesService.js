@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
 const InvariantError = require('../../exceptions/InvariantError');
 const { mapDBToModel } = require('../../utils');
-const NotFoundError = require('../../exceptions/NotFoundError')
+const NotFoundError = require('../../exceptions/NotFoundError');
 
 class NotesService {
   constructor() {
@@ -66,9 +66,9 @@ class NotesService {
       text: 'DELETE FROM notes WHERE id = $1 RETURNING id',
       values: [id],
     };
- 
+
     const result = await this._pool.query(query);
- 
+
     if (!result.rows.length) {
       throw new NotFoundError('Catatan gagal dihapus. Id tidak ditemukan');
     }
